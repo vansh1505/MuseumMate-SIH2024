@@ -25,7 +25,7 @@ async function fetchData() {
     return data;
   } catch (err) {
     console.error('Error occurred while fetching data:', err);
-    throw err; // Throw the error to be caught in the endpoint
+    throw err;
   } finally {
     await client.close();
   }

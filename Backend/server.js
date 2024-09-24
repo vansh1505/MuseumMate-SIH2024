@@ -1,22 +1,8 @@
-const express = require('express');
 const { MongoClient } = require('mongodb');
-const cors = require('cors');
 
-const app = express();
-const port = 5000; // Use a fixed port for local development
-
-// CORS options
-const corsOptions = {
-  origin: 'https://museum-mate-vansh.vercel.app', // Set your allowed origin
-  optionsSuccessStatus: 200
-};
-app.use(cors(corsOptions));
-
-// MongoDB connection string (directly inserted)
-const uri = 'mongodb+srv://db:db1@vansh.xfgyxje.mongodb.net/Museum-data?retryWrites=true&w=majority&appName=vansh';
+const uri = 'mongodb+srv://vansh:vansh123@vansh.xfgyxje.mongodb.net/';
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
-// Function to fetch data from MongoDB
 async function fetchData() {
   try {
     await client.connect();
@@ -35,18 +21,17 @@ async function fetchData() {
   }
 }
 
-// Endpoint to serve the museum data
-app.get('/museums', async (req, res) => {
-  try {
-    const data = await fetchData();
-    res.json(data);
-  } catch (err) {
-    console.error('Error fetching data:', err);
-    res.status(500).send('Error fetching data: ' + err.message); // Send detailed error message
+module.exports = async (req, res) => {
+  if (req.method === 'GET') {
+    try {
+      const data = await fetchData();
+      res.status(200).json(data);
+    } catch (err) {
+      console.error('Error fetching data:', err);
+      res.status(500).json({ error: 'Error fetching data: ' + err.message });
+    }
+  } else {
+    res.setHeader('Allow', ['GET']);
+    res.status(405).end(`Method ${req.method} Not Allowed`);
   }
-});
-
-// Start the server
-app.listen(port, () => {
-  console.log(`Server running on port ${port}`);
-});
+};

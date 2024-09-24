@@ -2,7 +2,7 @@ const { MongoClient } = require('mongodb');
 
 // Update your MongoDB connection string as needed
 const uri = 'mongodb+srv://db:db1@vansh.xfgyxje.mongodb.net/Museum-data?retryWrites=true&w=majority&appName=vansh';
-const client = new MongoClient(uri);
+const client = new MongoClient(uri); // No deprecated options here
 
 async function fetchData() {
   try {

@@ -6,16 +6,16 @@ const app = express();
 const port = 5000;
 
 const corsOptions = {
-  origin: 'https://museum-mate-vansh.vercel.app/',
+  origin: 'https://museum-mate-vansh.vercel.app', // Removed trailing slash
   optionsSuccessStatus: 200
 };
 app.use(cors(corsOptions));
 
-// Replace with your actual MongoDB connection string
+// MongoDB connection string
 const uri = 'mongodb+srv://vansh:vansh123@vansh.xfgyxje.mongodb.net/';
 
 async function fetchData() {
-  const client = new MongoClient(uri);
+  const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
   try {
     await client.connect();
@@ -25,6 +25,7 @@ async function fetchData() {
     return data;
   } catch (err) {
     console.error('Error occurred while fetching data:', err);
+    throw err;  // Throw the error to be caught in the endpoint
   } finally {
     await client.close();
   }

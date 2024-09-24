@@ -1,6 +1,6 @@
 const { MongoClient } = require('mongodb');
 
-const uri = 'mongodb+srv://vansh:vansh123@vansh.xfgyxje.mongodb.net/';
+const uri = 'mongodb+srv://vansh:<db_password>@vansh.xfgyxje.mongodb.net/?retryWrites=true&w=majority&appName=vansh';
 const client = new MongoClient(uri);
 
 async function fetchData() {

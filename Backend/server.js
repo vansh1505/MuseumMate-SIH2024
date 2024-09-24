@@ -1,6 +1,6 @@
 const { MongoClient } = require('mongodb');
 
-const uri = 'mongodb+srv://vansh:vansh123@vansh.xfgyxje.mongodb.net/';
+const uri = 'mongodb+srv://db:db1@vansh.xfgyxje.mongodb.net/Museum-data?retryWrites=true&w=majority&appName=vansh';
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
 async function fetchData() {

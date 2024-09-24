@@ -5,8 +5,11 @@ const cors = require('cors');
 const app = express();
 const port = 5000;
 
-// Enable CORS to allow requests from your React frontend
-app.use(cors());
+const corsOptions = {
+  origin: 'https://museum-mate-vansh.vercel.app/',
+  optionsSuccessStatus: 200
+};
+app.use(cors(corsOptions));
 
 // Replace with your actual MongoDB connection string
 const uri = 'mongodb+srv://vansh:vansh123@vansh.xfgyxje.mongodb.net/';

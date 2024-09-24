@@ -4,11 +4,6 @@
     { "src": "server.js", "use": "@vercel/node" }
   ],
   "routes": [
-    { "src": "/museums", "dest": "/server.js" }
-  ],
-  "functions": {
-    "server.js": {
-      "maxDuration": 30
-    }
-  }
+    { "src": "/museums", "dest": "/server.js", "methods": ["GET"] }
+  ]
 }

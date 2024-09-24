@@ -11,7 +11,7 @@ const corsOptions = {
 };
 app.use(cors(corsOptions));
 
-// MongoDB connection string
+
 const uri = 'mongodb+srv://db:db1@vansh.xfgyxje.mongodb.net/Museum-data?retryWrites=true&w=majority&appName=vansh';
 
 async function fetchData() {

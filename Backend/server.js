@@ -1,8 +1,14 @@
+const express = require('express');
 const { MongoClient } = require('mongodb');
 
-// Update your MongoDB connection string as needed
+const app = express();
+
+// MongoDB connection string
 const uri = 'mongodb+srv://db:db1@vansh.xfgyxje.mongodb.net/Museum-data?retryWrites=true&w=majority&appName=vansh';
-const client = new MongoClient(uri); // No deprecated options here
+const client = new MongoClient(uri);
+
+// Middleware to handle JSON requests
+app.use(express.json());
 
 async function fetchData() {
   try {
@@ -22,17 +28,20 @@ async function fetchData() {
   }
 }
 
-module.exports = async (req, res) => {
-  if (req.method === 'GET') {
-    try {
-      const data = await fetchData();
-      res.status(200).json(data);
-    } catch (err) {
-      console.error('Error fetching data:', err);
-      res.status(500).json({ error: 'Error fetching data: ' + err.message });
-    }
-  } else {
-    res.setHeader('Allow', ['GET']);
-    res.status(405).end(`Method ${req.method} Not Allowed`);
+app.get('/museums', async (req, res) => {
+  try {
+    const data = await fetchData();
+    res.status(200).json(data);
+  } catch (err) {
+    console.error('Error fetching data:', err);
+    res.status(500).json({ error: 'Error fetching data: ' + err.message });
   }
-};
+});
+
+// Default route for testing
+app.get('/', (req, res) => {
+  res.send('Welcome to the Museum API!');
+});
+
+// Export the Express app
+module.exports = app; 

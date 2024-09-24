@@ -6,11 +6,11 @@ const app = express();
 const port = 5000;
 
 const corsOptions = {
-    origin: 'https://museum-mate-vansh.vercel.app', // Removed trailing slash
+  origin: 'https://museum-mate-vansh.vercel.app', // Removed trailing slash
   optionsSuccessStatus: 200
 };
-app.use(cors(corsOptions));
 
+app.use(cors(corsOptions));
 
 const uri = 'mongodb+srv://db:db1@vansh.xfgyxje.mongodb.net/Museum-data?retryWrites=true&w=majority&appName=vansh';
 
@@ -25,14 +25,23 @@ async function fetchData() {
     return data;
   } catch (err) {
     console.error('Error occurred while fetching data:', err);
-    throw err;  // Throw the error to be caught in the endpoint
+    throw err; // Throw the error to be caught in the endpoint
   } finally {
     await client.close();
   }
 }
 
+// Create an endpoint for the root URL '/'
+app.get('/', (req, res) => {
+  res.send('Welcome to the Museum API!'); // Simple message for the root endpoint
+});
 
-// Create an endpoint to serve the data
+// Create an endpoint for '/res' that returns JSON
+app.get('/res', (req, res) => {
+  res.json({ working: 'yes' }); // JSON response indicating that the service is working
+});
+
+// Create an endpoint to serve the data from MongoDB
 app.get('/museums', async (req, res) => {
   try {
     const data = await fetchData();

@@ -6,10 +6,5 @@
   ],
   "routes": [
     { "src": "/museums", "dest": "/server.js", "methods": ["GET"] }
-  ],
-  "functions": {
-    "server.js": {
-      "maxDuration": 30
-    }
-  }
+  ]
 }

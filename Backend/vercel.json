@@ -1,16 +1,15 @@
 {
-   "version": 2,
-   "name": "museum-mate",
-   "builds": [
-      { "src": "server.js", "use": "@vercel/node" }
-   ],
-   "routes": [
-      { "src": "/(.*)", "dest": "/server.js", "methods": ["GET"]}
-   ]
+  "version": 2,
+  "name": "museum-mate",
+  "builds": [
+    { "src": "server.js", "use": "@vercel/node" }
+  ],
+  "routes": [
+    { "src": "/museums", "dest": "/server.js", "methods": ["GET"] }
+  ],
   "functions": {
-    "/(*.js)": {
+    "server.js": {
       "maxDuration": 30
     }
   }
 }
-

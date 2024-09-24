@@ -8,7 +8,7 @@ const Visit = () => {
   useEffect(() => {
     const fetchMuseums = async () => {
       try {
-        const response = await fetch('http://localhost:5000/museums');
+        const response = await fetch('https://museum-mate-server.vercel.app/museums');
         const data = await response.json();
         setMuseums(data);
       } catch (error) {

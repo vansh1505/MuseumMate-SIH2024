@@ -6,7 +6,7 @@ const app = express();
 const port = 5000;
 
 const corsOptions = {
-  origin: 'https://museum-mate-vansh.vercel.app', // Removed trailing slash
+  origin: 'https://museum-mate-vansh.vercel.app',
   optionsSuccessStatus: 200
 };
 

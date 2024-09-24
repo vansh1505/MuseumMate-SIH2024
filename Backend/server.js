@@ -15,7 +15,7 @@ app.use(cors(corsOptions));
 const uri = 'mongodb+srv://db:db1@vansh.xfgyxje.mongodb.net/Museum-data?retryWrites=true&w=majority&appName=vansh';
 
 async function fetchData() {
-  const client = new MongoClient(uri); // Removed deprecated options
+  const client = new MongoClient(uri);
 
   try {
     await client.connect();

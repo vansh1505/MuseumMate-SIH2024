@@ -42,6 +42,6 @@ app.get('/museums', async (req, res) => {
 app.get('/', (req, res) => {
   res.send('Welcome to the Museum API!');
 });
-
+fetchData();
 // Export the Express app
 module.exports = app; 

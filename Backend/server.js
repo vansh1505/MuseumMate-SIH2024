@@ -13,7 +13,7 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 const uri = 'mongodb+srv://db:db1@vansh.xfgyxje.mongodb.net/Museum-data?retryWrites=true&w=majority&appName=vansh';
-
+//uri
 async function fetchData() {
   const client = new MongoClient(uri);
 
